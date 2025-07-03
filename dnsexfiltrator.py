@@ -15,7 +15,7 @@ import sys
 #------------------------------------------------------------------------
 class RC4:
 	def __init__(self, key = None):
-		self.state = range(256) # initialisation de la table de permutation
+		self.state = list(range(256)) # initialisation de la table de permutation
 		self.x = self.y = 0 # les index x et y, au lieu de i et j
 
 		if key is not None:
@@ -32,7 +32,7 @@ class RC4:
 	# Decrypt binary input data
 	def binaryDecrypt(self, data):
 		output = [None]*len(data)
-		for i in xrange(len(data)):
+		for i in range(len(data)):
 			self.x = (self.x + 1) & 0xFF
 			self.y = (self.state[self.x] + self.y) & 0xFF
 			self.state[self.x], self.state[self.y] = self.state[self.y], self.state[self.x]
@@ -156,8 +156,10 @@ if __name__ == '__main__':
 					msgParts = qname.split(".")
 					
 					msg = fromBase32(msgParts[1])
-					fileName = msg.split('|')[0]		# Name of the file being exfiltrated
-					nbChunks = int(msg.split('|')[1])	# Total number of chunks of data expected to receive
+					msg = fromBase32(msgParts[1])
+					msg_str = msg.decode('utf-8')
+					fileName = msg_str.split('|')[0]        # Name of the file being exfiltrated
+					nbChunks = int(msg_str.split('|')[1])   # Total number of chunks of data expected to receive
 					
 					if msgParts[2].upper() == "BASE32":
 						useBase32 = True
