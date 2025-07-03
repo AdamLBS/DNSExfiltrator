@@ -32,7 +32,7 @@ class RC4:
 	# Decrypt binary input data
 	def binaryDecrypt(self, data):
 		output = [None]*len(data)
-		for i in xrange(len(data)):
+		for i in range(len(data)):
 			self.x = (self.x + 1) & 0xFF
 			self.y = (self.state[self.x] + self.y) & 0xFF
 			self.state[self.x], self.state[self.y] = self.state[self.y], self.state[self.x]
