@@ -15,7 +15,7 @@ import sys
 #------------------------------------------------------------------------
 class RC4:
 	def __init__(self, key = None):
-		self.state = range(256) # initialisation de la table de permutation
+		self.state = list(range(256)) # initialisation de la table de permutation
 		self.x = self.y = 0 # les index x et y, au lieu de i et j
 
 		if key is not None:
