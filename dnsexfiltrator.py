@@ -156,7 +156,6 @@ if __name__ == '__main__':
 					msgParts = qname.split(".")
 					
 					msg = fromBase32(msgParts[1])
-					msg = fromBase32(msgParts[1])
 					msg_str = msg.decode('utf-8')
 					fileName = msg_str.split('|')[0]        # Name of the file being exfiltrated
 					nbChunks = int(msg_str.split('|')[1])   # Total number of chunks of data expected to receive
